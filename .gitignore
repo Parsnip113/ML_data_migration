@@ -1,0 +1,13 @@
+# IntelliJ IDEA Project files
+.idea/
+
+# Python cache files
+__pycache__/
+
+traces
+
+backups/
+
+
+logs/
+simulation_output

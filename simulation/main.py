@@ -10,7 +10,7 @@ from components.migration_controller import MigrationController
 from components.policy import SimpleLFUPolicy # 或后续的AITPolicy
 
 def run_simulation():
-    print("Starting AIT Simulation Environment...")
+    print("Starting MLDS Simulation Environment...")
     env = simpy.Environment()
 
     # 1. 初始化存储层级
@@ -86,16 +86,8 @@ if __name__ == "__main__":
     # ...
     # 确保 traces 文件夹存在
     import os
-    if not os.path.exists("traces"):
-        os.makedirs("traces")
     if not os.path.exists(TRACE_FILE_PATH):
-        with open(TRACE_FILE_PATH, 'w', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow(["timestamp","lba","size_bytes","type"])
-            writer.writerow(["0.0","1000",str(LBA_SIZE_BYTES * 2),"read"]) # 2 LBAs
-            writer.writerow(["10.0","20000",str(LBA_SIZE_BYTES * 10),"write"]) # 10 LBAs
-            writer.writerow(["50.0",str(LBAS_PER_CHUNK * 3 + 10),str(CHUNK_SIZE_BYTES),"read"]) # A full chunk
-            writer.writerow(["100.0",str(LBAS_PER_CHUNK * 5),str(LBA_SIZE_BYTES * 5),"write"])
-        print(f"Created a sample trace file at {TRACE_FILE_PATH}")
+      raise FileNotFoundError(f"错误：追踪文件 '{TRACE_FILE_PATH}' 不存在。程序已终止。")
+
 
     run_simulation()
